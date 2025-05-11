@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <style> 
+        /* General styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            height: 100%;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            margin: 20px 0;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #34495e;
+        }
+
+        /* Main content styles */
+        .content {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 20px;
+            background-color: #ecf0f1;
+            overflow-y: auto;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        .navbar-left h1 {
+            font-size: 24px;
+        }
+
+        .navbar-right span {
+            font-size: 18px;
+        }
+
+        .panel {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .panel h2 {
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .panel-content {
+            font-size: 18px;
+            color: #34495e;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #dcdcdc;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
+    <script>
+        function showCards(module) {
+            const sections = document.querySelectorAll('.panel');
+            sections.forEach(section => section.style.display = 'none');
+            document.getElementById(module).style.display = 'block';
+        }
+
+        function logout() {
+            alert('You have been logged out.');
+            window.location.href = 'index2.php'; // Redirect to login page
+        }
+    </script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <li><a href="#" onclick="showCards('dashboard')">Dashboard</a></li>
+            <li><a href="#" onclick="showCards('categories')">Categories</a></li>
+            <li><a href="#" onclick="showCards('sponsors')">Sponsors</a></li>
+            <li><a href="#" onclick="showCards('events')">Events</a></li>
+            <li><a href="#" onclick="showCards('users')">Users</a></li>
+            <li><a href="#" onclick="showCards('bookings')">Bookings</a></li>
+            <li><a href="#" onclick="showCards('news')">News</a></li>
+            <li><a href="#" onclick="showCards('settings')">Settings</a></li>
+            <li><a href="#" onclick="logout()">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content">
+        <!-- Top Navigation Bar -->
+        <div class="navbar">
+            <div class="navbar-left">
+                <h1>Welcome, Admin</h1>
+            </div>
+            <div class="navbar-right">
+                <span>Notifications</span>
+            </div>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboard" class="panel">
+            <h2>Dashboard</h2>
+            <div class="panel-content">
+                <p>Total Categories: <b>10</b></p>
+                <p>Total Sponsors: <b>5</b></p>
+                <p>Total Events: <b>20</b></p>
+                <p>Total Registered Users: <b>100</b></p>
+                <p>Total Bookings: <b>50</b></p>
+                <p>New Bookings: <b>10</b></p>
+                <p>Confirmed Bookings: <b>30</b></p>
+                <p>Cancelled Bookings: <b>10</b></p>
+            </div>
+        </div>
+
+        <!-- Categories Section -->
+        <div id="categories" class="panel" style="display:none;">
+            <h2>Manage Categories</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>Category 1</h3>
+                    <p>Details about Category 1</p>
+                </div>
+                <div class="card">
+                    <h3>Category 2</h3>
+                    <p>Details about Category 2</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sponsors Section -->
+        <div id="sponsors" class="panel" style="display:none;">
+            <h2>Manage Sponsors</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>Sponsor 1</h3>
+                    <p>Details about Sponsor 1</p>
+                </div>
+                <div class="card">
+                    <h3>Sponsor 2</h3>
+                    <p>Details about Sponsor 2</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Events Section -->
+        <div id="events" class="panel" style="display:none;">
+            <h2>Manage Events</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>Event 1</h3>
+                    <p>Details about Event 1</p>
+                </div>
+                <div class="card">
+                    <h3>Event 2</h3>
+                    <p>Details about Event 2</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Users Section -->
+        <div id="users" class="panel" style="display:none;">
+            <h2>Manage Users</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>User 1</h3>
+                    <p>Details about User 1</p>
+                </div>
+                <div class="card">
+                    <h3>User 2</h3>
+                    <p>Details about User 2</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bookings Section -->
+        <div id="bookings" class="panel" style="display:none;">
+            <h2>Manage Bookings</h2>
+            <div class="card-container">
+                <!-- Dynamic booking data would be loaded here -->
+                <div class="card">
+                    <h3>Booking 1</h3>
+                    <p>Details about Booking 1</p>
+                    <button onclick="updateStatus(1, 'Approved')">Approve</button>
+                </div>
+                <div class="card">
+                    <h3>Booking 2</h3>
+                    <p>Details about Booking 2</p>
+                    <button onclick="updateStatus(2, 'Cancelled')">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- News Section -->
+        <div id="news" class="panel" style="display:none;">
+            <h2>Manage News</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>News 1</h3>
+                    <p>Details about News 1</p>
+                </div>
+                <div class="card">
+                    <h3>News 2</h3>
+                    <p>Details about News 2</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Section -->
+        <div id="settings" class="panel" style="display:none;">
+            <h2>Website Settings</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>Setting 1</h3>
+                    <p>Details about Setting 1</p>
+                </div>
+                <div class="card">
+                    <h3>Setting 2</h3>
+                    <p>Details about Setting 2</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

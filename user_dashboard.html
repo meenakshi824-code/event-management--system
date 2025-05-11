@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f7;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .dashboard-container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            background-color: #2d3e50;
+            color: #fff;
+            width: 250px;
+            padding: 30px;
+            box-sizing: border-box;
+            position: fixed;
+            height: 100%;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 50px;
+            font-weight: 600;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 20px 0;
+        }
+
+        .sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #4CAF50;
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 40px;
+            background-color: #fff;
+            width: 100%;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .active-section {
+            display: block;
+        }
+
+        .user-info, .user-events, .user-actions, .password-change-form {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .user-info h3, .user-events h3, .user-actions h3, .password-change-form h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .user-info p {
+            font-size: 16px;
+            color: #555;
+            margin: 5px 0;
+        }
+
+        .user-events table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .user-events th, .user-events td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .user-events th {
+            background-color: #f4f4f4;
+            font-weight: 600;
+        }
+
+        .password-change-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .password-change-form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .password-change-form button:hover {
+            background-color: #45a049;
+        }
+
+        .user-actions button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 15px;
+        }
+
+        .user-actions button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <h2>User Dashboard</h2>
+            <ul>
+                <li><a href="javascript:void(0);" onclick="showSection('profile')">My Profile</a></li>
+                <li><a href="javascript:void(0);" onclick="showSection('bookings')">Booking Details</a></li>
+                <li><a href="javascript:void(0);" onclick="showSection('password')">Change Password</a></li>
+                <li><a href="javascript:void(0);" onclick="logout()">Logout</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <!-- My Profile Section -->
+            <div id="profile" class="section active-section user-info">
+                <h3>Welcome, John Doe</h3>
+                <p>Email: john.doe@example.com</p>
+                <p>Phone: +123 456 7890</p>
+            </div>
+
+            <!-- Booking Details Section -->
+            <div id="bookings" class="section user-events">
+                <h3>Your Booking Details</h3>
+                <table>
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr>
+                        <td>Music Concert</td>
+                        <td>Feb 15, 2025</td>
+                        <td>Booked</td>
+                    </tr>
+                    <tr>
+                        <td>Food Festival</td>
+                        <td>March 5, 2025</td>
+                        <td>Booked</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Change Password Section -->
+            <div id="password" class="section password-change-form">
+                <h3>Change Password</h3>
+                <form id="passwordForm">
+                    <label for="current-password">Current Password:</label>
+                    <input type="password" id="current-password" name="current-password" required>
+
+                    <label for="new-password">New Password:</label>
+                    <input type="password" id="new-password" name="new-password" required>
+
+                    <label for="confirm-password">Confirm New Password:</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+
+                    <button type="submit">Change Password</button>
+                </form>
+            </div>
+
+            <!-- User Actions Section -->
+            <div id="actions" class="section user-actions">
+                <h3>Actions</h3>
+                <button onclick="showSection('profile')">Update Profile</button>
+                <button onclick="showSection('password')">Change Password</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to toggle between sections
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(function(section) {
+                section.classList.remove('active-section');
+            });
+
+            // Show the selected section
+            document.getElementById(sectionId).classList.add('active-section');
+        }
+
+        // Logout function (just simulates logout)
+        function logout() {
+            alert("You have logged out successfully.");
+            window.location.reload(); // You can replace this with a redirect to login page
+        }
+
+        // Handle password change form submission
+        document.getElementById('passwordForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const currentPassword = document.getElementById('current-password').value;
+            const newPassword = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (newPassword !== confirmPassword) {
+                alert("New password and confirm password do not match!");
+                return;
+            }
+
+            alert("Password changed successfully!");
+        });
+    </script>
+</body>
+</html>

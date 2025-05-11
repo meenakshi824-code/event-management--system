@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #0073e6;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+    }
+
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: #0073e6;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .back-button:hover {
+      background-color: #005bb5;
+    }
+
+    .container {
+      width: 80%;
+      margin: 20px auto;
+    }
+
+    .event {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .event img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .event h3 {
+      margin: 10px 0;
+      color: #0073e6;
+    }
+
+    .event .date {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .event .book-button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #0073e6;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .event .book-button:hover {
+      background-color: #005bb5;
+    }
+  </style>
+</head>
+<body>
+  <!-- Back Button -->
+  <a href="index2.php" class="back-button">Back</a>
+
+  <header>
+    <h1>Happening Events</h1>
+  </header>
+
+  <div class="container">
+    <!-- Event 1: Christmas -->
+    <div class="event">
+      <img src="christmas.jpg" alt="Christmas Event">
+      <h3>Christmas</h3>
+      
+      <p>Celebrate Christmas with us and enjoy a festive evening filled with joy and fun activities!</p>
+      <!-- Book Now Button -->
+      <a href="event2.php?eventName=Christmas&eventDescription=Celebrate Christmas with us and enjoy a festive evening filled with joy and fun activities!" class="book-button">Book Now</a>
+    </div>
+
+    <!-- Event 2: New Year -->
+    <div class="event">
+      <img src="newyear.jpg" alt="New Year Event">
+      <h3>New Year</h3>
+      
+      <p>Ring in the new year with live music, fireworks, and a night of celebration!</p>
+      <!-- Book Now Button -->
+      <a href="event2.php?eventName=New Year&eventDescription=Ring in the new year with live music, fireworks, and a night of celebration!" class="book-button">Book Now</a>
+    </div>
+
+    <!-- Event 3: Local Festival -->
+    <div class="event">
+      <img src="localfestival.jpg" alt="Local Festival Event">
+      <h3>Local Cultural Festival</h3>
+      
+      <p>Experience the vibrant culture of our community with traditional music, dance, and food!</p>
+      <!-- Book Now Button -->
+      <a href="event2.php?eventName=Local Cultural Festival&eventDescription=Experience the vibrant culture of our community with traditional music, dance, and food!" class="book-button">Book Now</a>
+    </div>
+  </div>
+</body>
+</html>

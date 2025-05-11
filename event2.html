@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Event</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #0073e6;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+    }
+
+    .container {
+      width: 80%;
+      margin: 20px auto;
+    }
+
+    form {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    form label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    form input, form textarea, form button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    form button {
+      background-color: #0073e6;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #005bb5;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: #0073e6;
+      font-weight: bold;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Register Your Event</h1>
+  </header>
+
+  <div class="container">
+    <!-- Updated Back Link -->
+    <a href="Eventpages.html" class="back-link">&larr; Back to Events</a>
+
+    <form id="eventRegistrationForm">
+      <label for="eventName">Event Name:</label>
+      <input type="text" id="eventName" name="eventName" placeholder="Enter event name" required>
+
+      <label for="eventDate">Event Date:</label>
+      <input type="date" id="eventDate" name="eventDate" required>
+
+      <label for="eventLocation">Event Location:</label>
+      <input type="text" id="eventLocation" name="eventLocation" placeholder="Enter event location" required>
+
+      <label for="eventDescription">Event Description:</label>
+      <textarea id="eventDescription" name="eventDescription" rows="4" placeholder="Enter event description" required></textarea>
+
+      <label for="eventGuests">Number of Guests:</label>
+      <input type="number" id="eventGuests" name="eventGuests" placeholder="Enter number of guests" min="1" required>
+
+      <button type="submit">Register Event</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('eventRegistrationForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Get form data
+      const eventName = document.getElementById('eventName').value;
+      const eventDate = document.getElementById('eventDate').value;
+      const eventLocation = document.getElementById('eventLocation').value;
+      const eventDescription = document.getElementById('eventDescription').value;
+      const eventGuests = document.getElementById('eventGuests').value;
+
+      // Prepare event object
+      const eventData = {
+        name: eventName,
+        date: eventDate,
+        location: eventLocation,
+        description: eventDescription,
+        guests: eventGuests
+      };
+
+      // Save event data to localStorage
+      const existingEvents = JSON.parse(localStorage.getItem('events')) || [];
+      existingEvents.push(eventData);
+      localStorage.setItem('events', JSON.stringify(existingEvents));
+
+      // Redirect to the event list page
+      alert('Event registered successfully!');
+      window.location.href = 'Eventpages.html';
+    });
+  </script>
+</body>
+</html>
